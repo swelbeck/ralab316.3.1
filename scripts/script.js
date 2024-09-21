@@ -152,31 +152,47 @@ function buildSubmenu(subLinks) {
 // 1. Attach a delegated 'click' event listener to subMenuEl.
 subMenuEl.addEventListener(`click`, handleSubClick);
 
-
-    // The first line of code of the event listener function should call the event object's preventDefault() method.
-  function handleSubClick(evt) {
-    evt.preventDefault();
-    // The second line of code within the function should immediately return if the element clicked was not an <a> element.
-    if (evt.target.nodeName != `A`) return;
-    // Log the content of the <a> to verify the handler is working.
-    console.log(evt.target.textContent);
-    // 2. Next, the event listener should set the CSS top property of subMenuEl to 0.
-    subMenuEl.style.top = `0`;
-    // 3. Remove the active class from each <a> element in topMenuLinks.
-    for (i = 0; i < topMenuLinks.length; i++) {
-      topMenuLinks[i].classList.remove(`active`);
-    }
-    // 4. Update the contents of mainEl, within an <h1>, to the contents of the <a> element clicked within subMenuEl.
-    //   console.log(mainEl.getElementsByTagName(`h1`))
-    heading = mainEl.getElementsByTagName(`h1`);
-    // for(i=0; i < heading.length;i++){
-        console.log(heading)
-    // }
-    //   for(let el in mainEl){
-    //     console.log(el)
-    //   }
-
-    // 5. If the ABOUT link is clicked, an <h1>About</h1> should be displayed.
+// The first line of code of the event listener function should call the event object's preventDefault() method.
+function handleSubClick(evt) {
+  evt.preventDefault();
+  // The second line of code within the function should immediately return if the element clicked was not an <a> element.
+  if (evt.target.nodeName != `A`) return;
+  // Log the content of the <a> to verify the handler is working.
+  console.log(evt.target.textContent);
+  // 2. Next, the event listener should set the CSS top property of subMenuEl to 0.
+  subMenuEl.style.top = `0`;
+  // 3. Remove the active class from each <a> element in topMenuLinks.
+  for (i = 0; i < topMenuLinks.length; i++) {
+    topMenuLinks[i].classList.remove(`active`);
   }
+  // 4. Update the contents of mainEl, within an <h1>, to the contents of the <a> element clicked within subMenuEl.
+  //   console.log(mainEl.getElementsByTagName(`h1`))
+
+  let heading = mainEl.getElementsByTagName(`h1`);
+  // heading.textContent = subMenuEl.textContent;
+  for (i = 0; i < heading.length; i++) {
+    // console.log(heading[i]);
+    //     // for(let k in heading.)
+
+    let subHeading = subMenuEl.getElementsByTagName(`a`);
+    for (f = 0; f < subHeading.length; f++) {
+      let subHeadingList = subHeading[f];
+      for (c = 0; c < subHeadingList.length; c++) {
+        console.log(subHeadingList[c].textContent);
+
+        // heading[i].textContent = subMenuEl.textContent;
+        // console.log(heading[i].textContent);
+        // console.log(subMenuEl.textContent)
+        // })
+        heading[i].textContent = subHeadingList[c].textContent;
+      }
+    }
+  }
+  //   for(let el in mainEl){
+  //     console.log(el)
+  //   }
+
+  // 5. If the ABOUT link is clicked, an <h1>About</h1> should be displayed.
+}
 
 // ---------- Part 6: Completion and Code Review ----------
