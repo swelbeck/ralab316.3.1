@@ -32,7 +32,7 @@ var menuLinks = [
 
 // ---------- Part 1: Getting Started ----------
 // Select and cache the <main> element in a variable named mainEl.
-let mainEl = document.querySelector(`main`);
+const mainEl = document.querySelector(`main`);
 console.log(mainEl);
 
 // Set the background color of mainEl to the value stored in the --main-bg CSS custom property.
@@ -47,7 +47,7 @@ mainEl.classList.add(`flex-ctr`);
 
 // ---------- Part 2: Creating a Menu Bar ----------
 // Select and cache the <nav id="top-menu"> element in a variable named topMenuEl.
-let topMenuEl = document.getElementById(`top-menu`);
+const topMenuEl = document.getElementById(`top-menu`);
 
 // Set the height of the topMenuEl element to be 100%.
 topMenuEl.style.height = `100%`;
@@ -74,7 +74,7 @@ menuLinks.forEach((link) => {
 // ---------- R-ALAB 316.3.1:DOM Manipulation (Part Two) ----------
 // ---------- Part 3: Creating the Submenu ----------
 // 1. Select and cache the <nav id="sub-menu"> element in a variable named subMenuEl.
-let subMenuEl = document.getElementById(`sub-menu`);
+const subMenuEl = document.getElementById(`sub-menu`);
 
 // 2. Set the height subMenuEl element to be "100%".
 subMenuEl.style.height = `100%`;
@@ -98,7 +98,6 @@ let topMenuLinks = topMenuEl.getElementsByTagName(`a`);
 topMenuEl.addEventListener(`click`, handleClick);
 
 function handleClick(event) {
-  //   console.log(event);
   // The first line of code of the event listener function should call the event object's preventDefault() method.
   event.preventDefault();
   // The second line of code of the function should immediately return if the element clicked was not an <a> element.
