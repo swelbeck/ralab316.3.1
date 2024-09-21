@@ -112,8 +112,20 @@ function handleClick(event) {
   for (i = 0; i < topMenuLinks.length; i++) {
     topMenuLinks[i].classList.remove(`active`);
   }
+
   event.target.classList.add(`active`);
-  //differentiate two tag names by class
+
+  // Update the h1 when ABOUT is clicked
+  let heading = mainEl.getElementsByTagName(`h1`);
+  for (i = 0; i < heading.length; i++) {
+    if (event.target.textContent == `about`) {
+      // To update display to <h1>About</h1> as stated in the directions.
+      heading[i].textContent = `<h1>About</h1>`;
+
+      // Uncomment the line below to instead update the About display to `about`
+        // heading[i].textContent = event.target.textContent;
+    }
+  }
 
   // ---------- Part 5: Adding Submenu Interaction ----------
   for (let j = 0; j < menuLinks.length; j++) {
@@ -166,33 +178,14 @@ function handleSubClick(evt) {
     topMenuLinks[i].classList.remove(`active`);
   }
   // 4. Update the contents of mainEl, within an <h1>, to the contents of the <a> element clicked within subMenuEl.
-  //   console.log(mainEl.getElementsByTagName(`h1`))
-
   let heading = mainEl.getElementsByTagName(`h1`);
-  // heading.textContent = subMenuEl.textContent;
   for (i = 0; i < heading.length; i++) {
-    // console.log(heading[i]);
-    //     // for(let k in heading.)
-
-    let subHeading = subMenuEl.getElementsByTagName(`a`);
-    for (f = 0; f < subHeading.length; f++) {
-      let subHeadingList = subHeading[f];
-      for (c = 0; c < subHeadingList.length; c++) {
-        console.log(subHeadingList[c].textContent);
-
-        // heading[i].textContent = subMenuEl.textContent;
-        // console.log(heading[i].textContent);
-        // console.log(subMenuEl.textContent)
-        // })
-        heading[i].textContent = subHeadingList[c].textContent;
-      }
-    }
+    heading[i].textContent = evt.target.textContent;
   }
-  //   for(let el in mainEl){
-  //     console.log(el)
-  //   }
-
-  // 5. If the ABOUT link is clicked, an <h1>About</h1> should be displayed.
 }
+  // 5. If the ABOUT link is clicked, an <h1>About</h1> should be displayed.
+
+  // This section of the code has been added to the bottom of the handleClick(event) function from Line 118 to Line 126. 
+
 
 // ---------- Part 6: Completion and Code Review ----------
