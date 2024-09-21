@@ -116,37 +116,26 @@ function handleClick(event) {
   event.target.classList.add(`active`);
 
   // Update the h1 when ABOUT is clicked
-//   let mainHeading = mainEl.getElementsByTagName(`h1`);
-//   for (i = 0; i < mainHeading.length; i++) {
-//     if (event.target.textContent == `about`) {
-//       // To update display to <h1>About</h1> as stated in the directions.
-//       //   mainHeading[i].innerHTML = `<h1>About</h1>`;
-//       mainHeading[i].textContent = `About`;
-//         console.log(event.target.parentElement.id)
-//       // Uncomment the line below to instead update the About display to `about`
-//       // mainHeading[i].textContent = event.target.textContent;
-//     }
-      updateHeading(event);
+  updateMainDisplay(event);
 
-    // ---------- Part 5: Adding Submenu Interaction ----------
-    for (let j = 0; j < menuLinks.length; j++) {
-      if (menuLinks[j].text === event.target.textContent) {
-        item = menuLinks[j];
-        //   console.log(item)
-        if (menuLinks[j].subLinks) {
-          // console.log(menuLinks[j].subLinks);
-          subItems = menuLinks[j].subLinks;
-          subMenuEl.style.top = `100%`;
-          buildSubmenu(subItems);
-        } else {
-          subMenuEl.style.top = `0`;
-        }
+  // ---------- Part 5: Adding Submenu Interaction ----------
+  for (let j = 0; j < menuLinks.length; j++) {
+    if (menuLinks[j].text === event.target.textContent) {
+      item = menuLinks[j];
+      //   console.log(item)
+      if (menuLinks[j].subLinks) {
+        // console.log(menuLinks[j].subLinks);
+        subItems = menuLinks[j].subLinks;
+        subMenuEl.style.top = `100%`;
+        buildSubmenu(subItems);
+      } else {
+        subMenuEl.style.top = `0`;
       }
     }
-//   }
+  }
 }
 
-// Helper function
+// Helper function to build submenu
 function buildSubmenu(subLinks) {
   // 1. Clear the current contents of subMenuEl.
   subMenuEl.innerHTML = ``;
@@ -180,29 +169,29 @@ function handleSubClick(evt) {
     topMenuLinks[i].classList.remove(`active`);
   }
   // 4. Update the contents of mainEl, within an <h1>, to the contents of the <a> element clicked within subMenuEl.
-    updateHeading(evt)
+  updateMainDisplay(evt);
 }
 // 5. If the ABOUT link is clicked, an <h1>About</h1> should be displayed.
-// This section of the code has been added to the bottom of the handleClick(event) function from Line 118 to Line 126.
+// This section of the code has been added to the bottom of the handleClick(event) function on Line 119 using the helper function below.
 
-// Helper function for updating display
-function updateHeading(event) {
-  let mainHeading = mainEl.getElementsByTagName(`h1`);
-
-  for (i = 0; i < mainHeading.length; i++) {
+// Helper function for updating main h1 display
+function updateMainDisplay(event) {
+  let mainHeading = mainEl.getElementsByTagName(`h1`)[0];
+    // Update Main h1 display when submenu items are clicked on
     if (event.target.parentElement.id !== `top-menu`) {
-      mainHeading[i].textContent = event.target.textContent;
+      mainHeading.textContent = event.target.textContent;
     } else if (
-      event.target.textContent == `about` &&
+        // The only top menu item that should change the h1 display is the About button
+      event.target.textContent.toLowerCase() == `about` &&
       event.target.parentElement.id == `top-menu`
     ) {
-      // To update display to <h1>About</h1> as stated in the directions.
-      //   heading[i].textContent = `<h1>About</h1>`;
-      //   heading[i].innerHTML = `<h1>About</h1>`;
-      mainHeading[i].textContent = `About`;
+      // To update display to <h1>About</h1>.
+        // mainEl.innerHTML = `<h1>About</h1>`; *** this works as well ***
+        mainHeading.textContent = `About`;
     } else {
+        // For all other top menu items, do nothing to the main h1 display
+        return;
     }
   }
-}
 
 // ---------- Part 6: Completion and Code Review ----------
